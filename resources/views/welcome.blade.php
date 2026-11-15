@@ -12,4 +12,6 @@
     <x-testimonial :testimonials="$testimonials" :setting="$sectionSetting" />
 
     <x-footer :footer="$footer" />
+
+    <x-chatbot :footer="$footer" />
 @endsection

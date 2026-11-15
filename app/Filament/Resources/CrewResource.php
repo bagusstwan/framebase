@@ -6,19 +6,22 @@ use App\Filament\Resources\CrewResource\Pages;
 use App\Models\Crew;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Infolists;
+use Filament\Infolists\Infolist;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Filament\Infolists;
-use Filament\Infolists\Infolist;
 
 class CrewResource extends Resource
 {
     protected static ?string $model = Crew::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-identification';
+
     protected static ?string $navigationGroup = 'Master Data';
+
     protected static ?string $navigationLabel = 'Kru & Fotografer';
+
     protected static ?string $pluralModelLabel = 'Kru & Fotografer';
 
     public static function form(Form $form): Form
@@ -34,13 +37,7 @@ class CrewResource extends Resource
 
                         Forms\Components\Select::make('role')
                             ->label('Spesialisasi Peran')
-                            ->options([
-                                'Lead Photographer' => 'Lead Photographer',
-                                'Assistant Photographer' => 'Assistant Photographer',
-                                'Videographer Cinematic' => 'Videographer Cinematic',
-                                'Drone Pilot' => 'Drone Pilot Aerial',
-                                'Editor Visual' => 'Editor Visual Pasca Produksi',
-                            ])
+                            ->options(Crew::getRoles())
                             ->required(),
                     ])->columns(2),
 
@@ -92,10 +89,10 @@ class CrewResource extends Resource
                     Tables\Actions\EditAction::make(),
                     Tables\Actions\DeleteAction::make(),
                 ])
-                ->label('Options')
-                ->color('gray')
-                ->icon('heroicon-m-chevron-down')
-                ->button(),
+                    ->label('Options')
+                    ->color('gray')
+                    ->icon('heroicon-m-chevron-down')
+                    ->button(),
             ]);
     }
 
